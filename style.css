@@ -1,0 +1,897 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #f9f9f9;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.header {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;     /* ← Logo vertikal zentriert */
+    height: 120px;
+    /*padding: 0 35px 25px 35px;*/
+    padding: 0 35px 5px 20px;
+     position: relative;         /* ← für die Navigation */
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    padding-bottom: 2px;
+}
+
+.logo img {
+    height: 90px;          /* ← Passe die Höhe an */
+    width: auto;
+    display: block;
+}
+
+
+/* Navigation */
+
+nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    align-self: flex-end;       /* ← Navigation am unteren Rand */
+    padding-bottom: 10px;       /* ← etwas Abstand nach unten */
+}
+
+nav a {
+    text-decoration: none;
+
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 13.5px;
+
+    color: #666666;
+
+    letter-spacing: 0.5px;
+
+    transition: 0.3s;
+}
+
+/* Aktive Seite */
+nav a.active {
+    color: #000000;
+    font-weight: 700;
+}
+
+/* Hover */
+nav a:hover {
+    color: #000000;
+}
+
+
+/* =========================
+   SLIDESHOW
+   ========================= */
+
+.slideshow {
+    position: relative;
+
+    width: 100%;
+    height: calc(100vh - 90px);
+
+    overflow: hidden;
+}
+
+
+/* Einzelnes Bild */
+
+.slide {
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0;
+
+    transition: opacity 0.8s ease;
+}
+
+
+/* Aktuelles Bild */
+
+.slide.active {
+    opacity: 1;
+}
+
+
+/* Bild */
+
+.slide img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =========================
+   KATEGORIEN
+   ========================= */
+
+.projekt-navigation {
+
+    width: 100%;
+
+    background: #f9f9f9;
+
+    border-top: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+
+    padding: 18px 30px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 50px;
+}
+
+.projekt-navigation a {
+
+    text-decoration: none;
+
+    color: #8a8a8a;
+
+    font-family: 'Roboto Condensed', sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 400;
+
+    transition: .3s;
+
+    padding: 4px 8px;          /* ← links/rechts mehr Platz */
+}
+
+.projekt-navigation a:hover {
+
+    color: #000;
+}
+
+.projekt-navigation a.active {
+
+    color: #000;
+    font-weight: 700;
+}
+
+/* =========================
+   PROJEKT-GALERIE
+   ========================= */
+
+.project-gallery {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 2px;
+
+    width: 100%;
+}
+
+.gallery-item {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    background: #eee;
+
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.04);
+}
+
+/* =========================
+   KATEGORIE – WEISSE FLÄCHE
+   ========================= */
+
+
+.project-category {
+    width: 100%;               /* ← ganze Breite */
+    background-color: #ffffff;
+    padding: 0px 0;
+    margin: 0;
+}
+
+.category-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3px;
+    width: 100%;               /* ← ganze Breite */
+    padding: 0 20px;           /* ← etwas Abstand zum Rand */
+}
+
+
+/* einzelne Bilder */
+.category-images .gallery-item {
+    flex: 1 1 calc(20% - 3px);
+    aspect-ratio: 4 / 3;
+    max-width: calc(20% - 3px);
+    min-width: 150px;
+    overflow: hidden;
+}
+
+.category-images .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(80%);
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.category-images .gallery-item:hover img {
+    transform: scale(1.15);
+    filter: grayscale(0%);
+}
+
+/* =========================
+   LIGHTBOX
+   ========================= */
+
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-overlay.active {
+    display: flex;
+}
+
+.lightbox-box {
+    background-color: #ffffff;
+    padding: 50px 50px 40px 50px;    /* ← mehr Platz rundherum */
+    border-radius: 4px;
+    max-width: 98vw;                 /* ← fast ganze Breite */
+    max-height: 98vh;                /* ← fast ganze Höhe */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.lightbox-close {
+    position: absolute;              /* ← bleibt absolute */
+    top: 10px;                       /* ← Abstand vom Rand der Box */
+    right: 18px;                     /* ← Abstand vom Rand der Box */
+    font-size: 36px;
+    font-weight: 300;
+    color: #333;
+    cursor: pointer;
+    transition: 0.3s;
+    line-height: 1;
+    z-index: 10;                     /* ← sicherstellen, dass es über der Box ist */
+}
+
+.lightbox-close:hover {
+    transform: rotate(90deg);
+    color: #000;
+}
+
+.lightbox-info {
+    width: 100%;
+    text-align: right;
+    margin-top: 12px;
+    padding-right: 4px;
+}
+
+.lightbox-info h3 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.lightbox-info p {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #666;
+    margin: 2px 0 0 0;
+}
+
+/* =========================
+   LIGHTBOX PFEILE
+   ========================= */
+
+.lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    font-size: 40px;
+    font-weight: 300;
+    color: #333;
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 4px;
+    transition: 0.3s;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    line-height: 1;
+}
+
+.lightbox-arrow:hover {
+    background: #ffffff;
+    color: #000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.lightbox-arrow-left {
+    left: 10px;
+}
+
+.lightbox-arrow-right {
+    right: 10px;
+}
+
+
+/* =========================
+   GALERIE – AUSBLENDEN
+   ========================= */
+
+.category-images.shrink {
+    transition: all 0.6s ease;
+}
+
+.category-images .gallery-item.falling {
+    animation: fallDown 0.6s ease forwards;
+}
+
+@keyframes fallDown {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(200px) scale(0.8);
+    }
+}
+
+.category-images .gallery-item.staying {
+    animation: stayVisible 0.6s ease forwards;
+}
+
+@keyframes stayVisible {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =========================
+   LIGHTBOX – SANFTES EINBLENDEN
+   ========================= */
+
+.lightbox-image {
+    max-width: 92vw;
+    max-height: 85vh;
+    object-fit: contain;
+    display: block;
+    opacity: 0;
+    transform: scale(0.95) translateY(15px);
+    filter: blur(4px);
+    transition: all 0.8s ease-out;
+}
+
+.lightbox-overlay.active .lightbox-image {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+}
+
+.lightbox-overlay.active .lightbox-image {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+}
+
+/* Beim Schließen – sanft verschwinden */
+.lightbox-overlay .lightbox-image {
+    transition: all 4s ease-in;
+}
+
+/* =========================
+   GALERIE – RÜCKKEHR
+   ========================= */
+
+.category-images .gallery-item.returning {
+    animation: returnUp 0.8s ease forwards;
+}
+
+@keyframes returnUp {
+    0% {
+        opacity: 0;
+        transform: translateY(200px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================
+   TEAM
+   ========================= */
+
+
+
+.team-section {
+    width: 100%;
+    
+    padding: 30px 100px 30px 100px;   /* ← links/rechts mehr Abstand */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
+.team-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 60px;
+    max-width: 900px;
+    width: 100%;
+    padding: 40px 50px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    margin: 0 auto;            /* ← zusätzlich: perfekte Zentrierung */
+}
+
+.team-image {
+    flex: 1;
+}
+
+.team-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.team-info {
+    flex: 1;
+}
+
+.team-info .email {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: #1a1a1a;           /* ← etwas dunkler für bessere Lesbarkeit */
+    margin: 2px 0 0 0;
+}
+
+.team-info h2 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 5px 0;
+    letter-spacing: 1px;
+}
+
+.team-info .role {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #888888;
+    margin: 0 0 15px 0;
+    letter-spacing: 0.5px;
+}
+
+.team-info .description {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: #666666;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* =========================
+   TEAM – SANFTES EINBLENDEN
+   ========================= */
+
+.team-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    opacity: 0;                      /* ← startet unsichtbar */
+    transform: scale(0.95);          /* ← startet etwas kleiner */
+    animation: fadeInUp 1.2s ease forwards;  /* ← 1.2s Dauer */
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* =========================
+   HANDY / TABLET
+   ========================= */
+
+/* =========================
+   HAMBURGER-MENÜ
+   ========================= */
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #333333;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+
+/* =========================
+   KATEGORIE-HAMBURGER (gleiches Design wie oben)
+   ========================= */
+
+.category-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 30px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: 0;
+}
+
+.category-hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #8a8a8a;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.category-hamburger span:nth-child(2) {
+    width: 100%;          /* ← alle gleich lang */
+}
+
+.category-hamburger span:nth-child(3) {
+    width: 100%;          /* ← alle gleich lang */
+}
+
+.category-hamburger .category-label {
+    display: none;        /* ← Label versteckt, nur Icon */
+}
+
+/* Hamburger aktiv (X) – gleiches Verhalten wie oben */
+.category-hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.category-hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.category-hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* =========================
+   KATEGORIE-HEADER (Hamburger + Titel)
+   ========================= */
+
+.category-header {
+    display: none;
+}
+
+.category-title {
+    display: none;               /* ← auf Desktop versteckt */
+}
+
+
+/* =========================
+   HANDY / TABLET
+   ========================= */
+
+@media (max-width: 768px) {
+
+    /* === HEADER === */
+    .header {
+        height: 80px;
+        padding: 0 18px;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    /* === HAMBURGER === */
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: #ffffff;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transform: translateX(100%);
+        transition: transform 0.4s ease;
+        z-index: 999;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.open {
+        transform: translateX(0);
+    }
+
+    .nav-menu a {
+        font-size: 22px;
+        font-weight: 400;
+        color: #333333;
+        text-decoration: none;
+        letter-spacing: 1px;
+        padding: 10px 0;
+    }
+
+    .nav-menu a.active {
+        color: #000000;
+        font-weight: 700;
+    }
+
+    .nav-menu a:hover {
+        color: #000000;
+    }
+
+    /* === SLIDESHOW === */
+    .slideshow {
+        height: calc(100vh - 80px);
+    }
+
+    /* === KATEGORIEN (graues Band) === */
+    .projekt-navigation {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+        gap: 10px;
+    }
+
+    .projekt-navigation a {
+        font-size: 12px;
+    }
+
+    /* === KATEGORIE-HAMBURGER === */
+    .category-hamburger {
+       display: flex;           /* ← auf Handy sichtbar */
+    }
+
+    .category-links {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+        padding-top: 15px;
+        border-top: 1px solid #ececec;
+    }
+
+    .category-links.open {
+        display: flex;
+    }
+
+    .category-links a {
+        font-size: 14px;
+        padding: 6px 0;
+    }
+
+    .category-header {
+        display: flex;           /* ← auf Handy sichtbar */
+        justify-content: flex-start;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .category-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #000000;
+    }
+
+    /* === GALERIE === */
+    .category-images .gallery-item {
+        flex: 1 1 calc(50% - 3px);
+        max-width: calc(50% - 3px);
+    }
+
+    /* === TEAM === */
+    .team-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 25px 20px;
+    }
+
+    .team-image {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .team-info {
+        text-align: center;
+    }
+
+    /* === KONTAKT === */
+    .contact-section {
+        grid-template-columns: 1fr;
+        padding: 25px 20px;
+        gap: 30px;
+    }
+
+    .contact-left h1 {
+        font-size: 28px;
+    }
+
+    .map-section iframe {
+        height: 250px;
+    }
+
+    .contact-item i {
+        font-size: 20px;
+        width: 30px;
+    }
+
+    /* === LIGHTBOX === */
+    .lightbox-box {
+        padding: 30px 20px 20px 20px;
+        max-width: 98vw;
+        max-height: 98vh;
+    }
+
+    .lightbox-image {
+        max-width: 90vw;
+        max-height: 70vh;
+    }
+
+    .lightbox-arrow {
+        font-size: 28px;
+        padding: 6px 12px;
+    }
+
+    .lightbox-arrow-left {
+        left: 5px;
+    }
+
+    .lightbox-arrow-right {
+        right: 5px;
+    }
+
+    .lightbox-info h3 {
+        font-size: 16px;
+    }
+
+    .lightbox-info p {
+        font-size: 13px;
+    }
+
+    .lightbox-close {
+        font-size: 28px;
+        top: 8px;
+        right: 14px;
+    }
+
+    /* === IMPRESSUM === */
+    .legal-page {
+        margin: 100px 15px 40px 15px;
+        padding: 25px 20px;
+    }
+
+    .legal-page h1 {
+        font-size: 28px;
+    }
+
+    .legal-page h2 {
+        font-size: 18px;
+    }
+
+    .legal-page p {
+        font-size: 14px;
+    }
+
+}

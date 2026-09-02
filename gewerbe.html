@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gewerbe + Verwaltung - Architekt</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+            <img src="image/logo.png" alt="Architekt Logo">
+        </div>
+
+        <!-- Hamburger-Button -->
+    <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">STARTSEITE</a>
+            <a href="projekte.html" class="active">PROJEKTE</a>
+            <a href="team.html">ÜBER UNS</a>
+            <a href="kontakt.html">KONTAKT</a>
+        </nav>
+
+    </header>
+
+
+ <!-- Kategorien -->
+<section class="projekt-navigation">
+
+    <!-- Hamburger + Titel -->
+    <div class="category-header">
+        <div class="category-hamburger" id="categoryHamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <span class="category-title" id="categoryTitle">Gewerbe + Verwaltung</span>
+    </div>
+
+    <!-- Kategorie-Links -->
+    <div class="category-links" id="categoryLinks">
+        <a href="projekte.html">Projekt Übersicht</a>
+        <a href="wohnen.html">Wohnen</a>
+        <a href="gewerbe.html" class="active">Gewerbe + Verwaltung</a>
+        <a href="hotel.html">Hotel</a>
+        <a href="#">Industrie</a>
+        <a href="#">Kultur + Sakralbau</a>
+        <a href="#">Parkhaus</a>
+        <a href="#">Pflege</a>
+        <a href="#">Sanierung</a>
+        <a href="#">Wettbewerbe</a>
+        <a href="#">Entwürfe</a>
+    </div>
+
+</section>
+
+
+    <!-- =========================
+         GEWERBE + VERWALTUNG
+         ========================= -->
+
+    <section class="project-category">
+
+        <div class="category-images">
+
+            <!-- ALDI -->
+            <div class="gallery-item">
+                <img src="image/aldi1.jpg" alt="Gewerbe" title="Aldi Markt" data-title="Aldi Markt" data-location="München" data-project="aldi">
+            </div>
+
+            <!-- KAUFLAND -->
+            <div class="gallery-item">
+                <img src="image/kaufland1.jpg" alt="Gewerbe" title="Kaufland" data-title="Kaufland" data-location="Freiburg" data-project="kaufland">
+            </div>
+
+            <!-- NETTO -->
+            <div class="gallery-item">
+                <img src="image/netto1.jpg" alt="Gewerbe" title="Netto" data-title="Netto" data-location="Freiburg" data-project="netto">
+            </div>
+
+            <!-- PLAZA -->
+            <div class="gallery-item">
+                <img src="image/plaza1.jpg" alt="Gewerbe" title="Plaza-Arkaden" data-title="Plaza-Arkaden" data-location="Berlin" data-project="plaza">
+            </div>
+
+            <!-- ===== VERSTECKTE BILDER (nur für Lightbox) ===== -->
+            <div class="gallery-item" style="display: none;">
+                <img src="image/aldi2.jpg" alt="Gewerbe" title="Aldi Rückansicht" data-title="Aldi Rückansicht" data-location="München" data-project="aldi">
+            </div>
+
+            <div class="gallery-item" style="display: none;">
+                <img src="image/kaufland2.jpg" alt="Gewerbe" title="Kaufland Rückansicht" data-title="Kaufland Rückansicht" data-location="Freiburg" data-project="kaufland">
+            </div>
+            <div class="gallery-item" style="display: none;">
+                <img src="image/kaufland3.jpg" alt="Gewerbe" title="Kaufland Seitenansicht" data-title="Kaufland Seitenansicht" data-location="Freiburg" data-project="kaufland">
+            </div>
+
+            <div class="gallery-item" style="display: none;">
+                <img src="image/netto2.jpg" alt="Gewerbe" title="Netto Rückansicht" data-title="Netto Rückansicht" data-location="Freiburg" data-project="netto">
+            </div>
+            <div class="gallery-item" style="display: none;">
+                <img src="image/netto3.jpg" alt="Gewerbe" title="Netto Seitenansicht" data-title="Netto Seitenansicht" data-location="Freiburg" data-project="netto">
+            </div>
+            <div class="gallery-item" style="display: none;">
+                <img src="image/netto4.jpg" alt="Gewerbe" title="Netto Draufsicht" data-title="Netto Draufsicht" data-location="Freiburg" data-project="netto">
+            </div>
+
+            <div class="gallery-item" style="display: none;">
+                <img src="image/plaza2.jpg" alt="Gewerbe" title="Plaza-Arkaden Rückansicht" data-title="Plaza-Arkaden Rückansicht" data-location="Berlin" data-project="plaza">
+            </div>
+            <div class="gallery-item" style="display: none;">
+                <img src="image/plaza3.jpg" alt="Gewerbe" title="Plaza-Arkaden Seitenansicht" data-title="Plaza-Arkaden Seitenansicht" data-location="Berlin" data-project="plaza">
+            </div>
+            <div class="gallery-item" style="display: none;">
+                <img src="image/plaza4.jpg" alt="Gewerbe" title="Plaza-Arkaden" data-title="Plaza-Arkaden" data-location="Berlin" data-project="plaza">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LIGHTBOX
+         ========================= -->
+
+    <div class="lightbox-overlay" id="lightbox">
+
+        <div class="lightbox-box">
+
+            <!-- Schließen-Button -->
+            <span class="lightbox-close" id="closeLightbox">&times;</span>
+
+            <!-- Pfeil links -->
+            <button class="lightbox-arrow lightbox-arrow-left" id="prevImage">‹</button>
+
+            <!-- Pfeil rechts -->
+            <button class="lightbox-arrow lightbox-arrow-right" id="nextImage">›</button>
+
+            <!-- Großes Bild -->
+            <img class="lightbox-image" id="lightboxImage" src="" alt="Projekt">
+
+            <!-- Info-Text (unten rechts) -->
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle">Titel</h3>
+                <p id="lightboxLocation">Ort</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

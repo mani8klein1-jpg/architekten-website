@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Impressum - Architekt</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="kontakt.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+            <img src="image/logo.png" alt="Architekt Logo">
+        </div>
+
+        <!-- Hamburger-Button -->
+    <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">STARTSEITE</a>
+            <a href="projekte.html">PROJEKTE</a>
+            <a href="team.html">ÜBER UNS</a>
+            <a href="kontakt.html">KONTAKT</a>
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         IMPRESSUM
+         ========================= -->
+
+    <section class="legal-page">
+
+        <h1>Impressum</h1>
+
+        <h2>Angaben gemäß § 5 TMG</h2>
+
+        <p>
+            Kamal<br>
+            Architekt<br>
+            Aachener Str. 2<br>
+            52146 Würselen
+        </p>
+
+        <h2>Kontakt</h2>
+
+        <p>
+            Telefon: 02405 / 13<br>
+            E-Mail: <a href="mailto:info@mostafa-molazem.de">info@mostafa-molazem.de</a>
+        </p>
+
+        <h2>Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+
+        <p>
+            Berufsbezeichnung: Architekt<br>
+            Verliehen in: Deutschland
+        </p>
+
+        <p>
+            Zuständige Architektenkammer:<br>
+            Architektenkammer Nordrhein-Westfalen
+        </p>
+
+        <p>
+            Es gelten die berufsrechtlichen Regelungen der
+            Architektenkammer Nordrhein-Westfalen.
+        </p>
+
+        <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+
+        <p>
+            Mostafa Molazem<br>
+            Aachener Str. 2<br>
+            52146 Würselen
+        </p>
+
+        <h2>Haftung für Inhalte</h2>
+
+        <p>
+            Die Inhalte dieser Website wurden mit größtmöglicher
+            Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit
+            und Aktualität der Inhalte wird jedoch keine Gewähr
+            übernommen.
+        </p>
+
+        <h2>Haftung für Links</h2>
+
+        <p>
+            Diese Website enthält gegebenenfalls Links zu externen
+            Websites Dritter, auf deren Inhalte kein Einfluss besteht.
+            Daher wird für diese fremden Inhalte keine Gewähr übernommen.
+        </p>
+
+        <h2>Urheberrecht</h2>
+
+        <p>
+            Die auf dieser Website veröffentlichten Inhalte und Werke
+            unterliegen dem deutschen Urheberrecht.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         LIGHTBOX (optional)
+         ========================= -->
+
+    <div class="lightbox-overlay" id="lightbox">
+
+        <div class="lightbox-box">
+
+            <span class="lightbox-close" id="closeLightbox">&times;</span>
+
+            <button class="lightbox-arrow lightbox-arrow-left" id="prevImage">‹</button>
+            <button class="lightbox-arrow lightbox-arrow-right" id="nextImage">›</button>
+
+            <img class="lightbox-image" id="lightboxImage" src="" alt="Projekt">
+
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle">Titel</h3>
+                <p id="lightboxLocation">Ort</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

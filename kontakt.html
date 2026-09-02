@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kontakt - Architekt</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="kontakt.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+            <img src="image/logo.png" alt="Architekt Logo">
+        </div>
+
+        <!-- Hamburger-Button -->
+    <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">STARTSEITE</a>
+            <a href="projekte.html">PROJEKTE</a>
+            <a href="team.html">ÜBER UNS</a>
+            <a href="kontakt.html" class="active">KONTAKT</a>
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         KONTAKT – KARTE
+         ========================= -->
+
+    <section class="map-section">
+        <iframe
+            src="https://www.google.com/maps?q=Aachener+Str.+2+52146+Würselen&output=embed"
+        allowfullscreen=""
+        loading="lazy">
+        </iframe>
+    </section>
+
+
+    <!-- =========================
+         KONTAKT – INFO
+         ========================= -->
+
+    <section class="contact-section">
+
+        <div class="contact-left">
+            <h1>Kamal</h1>
+            <div class="line"></div>
+            <p>
+                Architektur mit Fokus auf Funktionalität,
+                Nachhaltigkeit und zeitlose Gestaltung.
+            </p>
+        </div>
+
+        <div class="contact-right">
+
+            <div class="contact-item">
+                <i class="fas fa-location-dot"></i>
+                <div>
+                    <h3>Adresse</h3>
+                    <p>Aachener Str. 2<br>52146 Würselen</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h3>Telefon</h3>
+                    <p>02405 / 63000472</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h3>E-Mail</h3>
+                    <p><a href="mailto:kamal@hotmail.de">kamal@hotmail.de</a></p>
+                </div>
+            </div>
+
+            <a class="route-btn" href="https://maps.google.com" target="_blank">
+                Route planen
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
+    <footer>
+        <a href="impressum.html">Impressum</a>
+        <a href="#">Datenschutz</a>
+    </footer>
+
+
+    <!-- =========================
+         LIGHTBOX (optional)
+         ========================= -->
+
+    <div class="lightbox-overlay" id="lightbox">
+
+        <div class="lightbox-box">
+
+            <span class="lightbox-close" id="closeLightbox">&times;</span>
+
+            <button class="lightbox-arrow lightbox-arrow-left" id="prevImage">‹</button>
+            <button class="lightbox-arrow lightbox-arrow-right" id="nextImage">›</button>
+
+            <img class="lightbox-image" id="lightboxImage" src="" alt="Projekt">
+
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle">Titel</h3>
+                <p id="lightboxLocation">Ort</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
