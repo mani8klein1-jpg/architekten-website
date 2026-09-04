@@ -149,6 +149,8 @@ nav a:hover {
     justify-content: center;
 
     gap: 50px;
+    position: relative;   /* ← NEU: für absolute Positionierung der Links */
+    z-index: 10;          /* ← NEU: über der Galerie */
 }
 
 .projekt-navigation a {
@@ -682,6 +684,49 @@ nav a:hover {
 
 
 /* =========================
+   KATEGORIE-BUTTON (nur auf Handys)
+   ========================= */
+
+.category-btn {
+    display: none;              /* ← auf Desktop versteckt */
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: calc(100% - 30px);
+    max-width: 400px;
+    margin: 8px auto;
+    padding: 14px 20px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    border-radius: 0px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.category-btn:hover {
+    background-color: #333333;
+}
+
+.category-btn .hamburger-icon {
+    font-size: 22px;
+    line-height: 1;
+    color: #ffffff;
+}
+
+.category-btn .category-btn-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================
    HANDY / TABLET
    ========================= */
 
@@ -697,7 +742,7 @@ nav a:hover {
         height: 50px;
     }
 
-    /* === HAMBURGER === */
+    /* === HAMBURGER (Hauptnavigation) === */
     .hamburger {
         display: flex;
     }
@@ -737,40 +782,59 @@ nav a:hover {
         font-weight: 700;
     }
 
-    .nav-menu a:hover {
-        color: #000000;
-    }
-
     /* === SLIDESHOW === */
     .slideshow {
         height: calc(100vh - 80px);
     }
 
-    /* === KATEGORIEN (graues Band) === */
+    /* === GRAUES BAND === */
     .projekt-navigation {
         flex-direction: column;
-        align-items: flex-start;
-        padding: 15px 20px;
+        align-items: center;
+        padding: 15px 15px;
         gap: 10px;
+        position: relative;   /* ← wichtig für absolute Positionierung */
+        z-index: 10;          /* ← über der Galerie */
+        background: #f9f9f9;
+        border-bottom: none;  /* ← damit die Links die Linie nicht doppelt haben */
     }
 
-    .projekt-navigation a {
-        font-size: 12px;
+    /* === KATEGORIE-BUTTON (schwarz) === */
+    .category-btn {
+        display: flex !important;
+        width: fit-content;          /* ← passt sich dem Text an */
+        padding: 12px 20px;          /* ← etwas weniger Padding */
+        font-size: 15px;             /* ← etwas kleinere Schrift */
+        border-radius: 0px;         /* ← abgerundet für Button-Look */
+        margin: 0 auto;  
     }
 
-    /* === KATEGORIE-HAMBURGER === */
-    .category-hamburger {
-       display: flex;           /* ← auf Handy sichtbar */
+    .category-btn .hamburger-icon {
+         font-size: 20px;
     }
 
+    .category-btn .category-btn-text {
+         font-size: 15px;
+    }
+
+    /* === KATEGORIE-LINKS === */
     .category-links {
         display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
+        flex-direction: row;          /* ← horizontal */
+        flex-wrap: wrap;              /* ← umbrechen */
+        justify-content: center;      /* ← zentriert */
+        align-items: center;
+        gap: 8px 12px;                /* ← Abstand zwischen den Links */
         width: 100%;
-        padding-top: 15px;
+        padding: 15px 10px;
+        background-color: #f9f9f9;
         border-top: 1px solid #ececec;
+        border-bottom: 1px solid #ececec;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 20;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     }
 
     .category-links.open {
@@ -778,21 +842,34 @@ nav a:hover {
     }
 
     .category-links a {
-        font-size: 14px;
-        padding: 6px 0;
+        font-size: 13px;
+        padding: 6px 10px;
+        text-align: center;
+        text-decoration: none;
+        color: #8a8a8a;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: 400;
+        transition: .3s;
+        white-space: nowrap;           /* ← verhindert Umbruch im Link */
+        border: 1px solid transparent;  /* ← für späteren Hover-Effekt */
+        border-radius: 4px;
     }
 
-    .category-header {
-        display: flex;           /* ← auf Handy sichtbar */
-        justify-content: flex-start;
-        gap: 12px;
-        width: 100%;
+    .category-links a:hover {
+        color: #000;
+        border-color: #e0e0e0;
     }
 
-    .category-title {
-        font-size: 16px;
+    .category-links a.active {
+        color: #000;
         font-weight: 700;
-        color: #000000;
+        border-color: #cccccc;
+    }
+
+    /* === GALERIE === */
+    .project-category {
+        position: relative;
+        z-index: 1;           /* ← unter den Kategorie-Links */
     }
 
     /* === GALERIE === */

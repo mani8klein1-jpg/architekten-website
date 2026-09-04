@@ -255,3 +255,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
+/* =========================
+   KATEGORIE-BUTTON (Handy)
+   ========================= */
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const categoryToggle = document.getElementById('categoryToggle');
+    const categoryLinks = document.getElementById('categoryLinks');
+
+    if (categoryToggle && categoryLinks) {
+        categoryToggle.addEventListener('click', function() {
+            categoryLinks.classList.toggle('open');
+        });
+    }
+
+});
