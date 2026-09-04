@@ -727,10 +727,43 @@ nav a:hover {
 
 
 /* =========================
+   VIDEO-OVERLAY (Handy)
+   ========================= */
+
+.video-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: #000000;
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;   
+}
+
+.video-overlay.active {
+    display: flex;
+}
+
+.video-overlay video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;    /* ← von cover auf contain geändert */
+    display: block;
+}
+
+/* =========================
    HANDY / TABLET
    ========================= */
 
 @media (max-width: 768px) {
+
+    .video-overlay {
+        display: none;
+    }
+    .video-overlay.active {
+        display: flex;
+    }
 
     /* === HEADER === */
     .header {

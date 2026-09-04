@@ -272,3 +272,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
+
+/* =========================
+   VIDEO-OVERLAY (Handy)
+   ========================= */
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    const hamburger = document.getElementById('hamburger');
+    const videoOverlay = document.getElementById('videoOverlay');
+    const video = document.getElementById('introVideo');
+
+    // Nur auf Handys (max-width: 768px)
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+
+    if (hamburger && videoOverlay && video) {
+        hamburger.addEventListener('click', function() {
+            // Nur auf Handys
+            if (!isMobile()) {
+                // Auf Desktop: Menü direkt öffnen
+                this.classList.toggle('active');
+                document.getElementById('navMenu').classList.toggle('open');
+                return;
+            }
+
+            // Auf Handy: Video abspielen
+            videoOverlay.classList.add('active');
+            video.currentTime = 0;
+            video.play();
+
+            // Nach 3 Sekunden: Video ausblenden, Menü öffnen
+            setTimeout(() => {
+                video.pause();
+                videoOverlay.classList.remove('active');
+                
+                // Menü öffnen
+                hamburger.classList.add('active');
+                document.getElementById('navMenu').classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }, 3000); // 3 Sekunden
+        });
+    }
+
+});
