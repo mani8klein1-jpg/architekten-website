@@ -574,6 +574,10 @@ nav a:hover {
         transform: scale(1) translateY(0);
     }
 }
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
 
 /* =========================
    HANDY / TABLET
@@ -739,10 +743,20 @@ nav a:hover {
     justify-content: center;
     align-items: center;
     padding: 20px;   
+    opacity: 0;                     /* ← startet unsichtbar */
+    transition: opacity 1s ease;    /* ← sanfter Übergang */
 }
 
 .video-overlay.active {
     display: flex;
+    opacity: 1;                     /* ← voll sichtbar */
+    animation: fadeIn 1s ease forwards;
+}
+
+.video-overlay.fading-out {
+    opacity: 0;                     /* ← wird unsichtbar */
+    pointer-events: none;
+    transition: opacity 1s ease;
 }
 
 .video-overlay video {

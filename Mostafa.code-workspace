@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../architekten_projekte/imag"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Mostafa"
+	}
+}

@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* =========================
-   VIDEO-OVERLAY (Handy)
+   VIDEO-OVERLAY (Handy) – mit Fade-In / Fade-Out
    ========================= */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -283,8 +283,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger');
     const videoOverlay = document.getElementById('videoOverlay');
     const video = document.getElementById('introVideo');
+    let isVideoPlaying = false;
 
-    // Nur auf Handys (max-width: 768px)
     function isMobile() {
         return window.innerWidth <= 768;
     }
@@ -293,27 +293,51 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.addEventListener('click', function() {
             // Nur auf Handys
             if (!isMobile()) {
-                // Auf Desktop: Menü direkt öffnen
                 this.classList.toggle('active');
                 document.getElementById('navMenu').classList.toggle('open');
                 return;
             }
 
-            // Auf Handy: Video abspielen
-            videoOverlay.classList.add('active');
+            if (isVideoPlaying) return;
+
+            isVideoPlaying = true;
+
+            // Video-Overlay sichtbar machen (Fade-In)
+            videoOverlay.style.display = 'flex';
+            videoOverlay.classList.remove('fading-out');
+
+            // Kleine Verzögerung für den Fade-In-Effekt
+            setTimeout(() => {
+                videoOverlay.classList.add('active');
+            }, 50);
+
+            // Video abspielen
             video.currentTime = 0;
             video.play();
 
-            // Nach 3 Sekunden: Video ausblenden, Menü öffnen
+            // Nach 3 Sekunden: Fade-Out starten
             setTimeout(() => {
-                video.pause();
+                // Fade-Out starten
                 videoOverlay.classList.remove('active');
-                
-                // Menü öffnen
-                hamburger.classList.add('active');
-                document.getElementById('navMenu').classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }, 3000); // 3 Sekunden
+                videoOverlay.classList.add('fading-out');
+
+                // Video pausieren
+                video.pause();
+
+                // Nach dem Fade-Out: Overlay ausblenden und Menü öffnen
+                setTimeout(() => {
+                    videoOverlay.style.display = 'none';
+                    videoOverlay.classList.remove('fading-out');
+
+                    // Menü öffnen
+                    hamburger.classList.add('active');
+                    document.getElementById('navMenu').classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                    isVideoPlaying = false;
+                }, 1000); // 1 Sekunde für Fade-Out
+
+            }, 3000); // 3 Sekunden Video
+
         });
     }
 
