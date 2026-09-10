@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const zurueckBtn = document.getElementById('zurueckBtn');
 
     // API-URL (wenn Backend läuft)
-    const API_URL = 'http://localhost:8000';
+    const API_URL = 'https://architekten-api-kj6k.onrender.com';
 
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
