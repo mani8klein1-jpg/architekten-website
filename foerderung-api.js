@@ -9,49 +9,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const ergebnisInhalt = document.getElementById('ergebnisInhalt');
     const zurueckBtn = document.getElementById('zurueckBtn');
 
-    // API-URL (wenn Backend läuft)
+    // API-URL
     const API_URL = 'https://architekten-api-kj6k.onrender.com';
 
-    // Dropdown dynamisch füllen
-        async function loadMassnahmen() {
-            try {
-                const response = await fetch(`${API_URL}/foerderungen`);
-                const data = await response.json();
-                
-                // Eindeutige Maßnahmen sammeln
-                const massnahmen = {};
-                data.forEach(item => {
-                    if (!massnahmen[item.massnahme]) {
-                        massnahmen[item.massnahme] = item.name;
-                    }
-                });
-                
-                // Dropdown füllen
-                const select = document.getElementById('bauvorhaben');
-                
-                // Alte Optionen entfernen (außer der ersten)
-                while (select.options.length > 1) {
-                    select.remove(1);
+    // ===== DROPDOWN DYNAMISCH FÜLLEN =====
+    async function loadMassnahmen() {
+        try {
+            const response = await fetch(`${API_URL}/foerderungen`);
+            const data = await response.json();
+            
+            // Eindeutige Maßnahmen sammeln
+            const massnahmen = {};
+            data.forEach(item => {
+                if (!massnahmen[item.massnahme]) {
+                    massnahmen[item.massnahme] = item.name;
                 }
-                
-                // Neue Optionen hinzufügen
-                Object.keys(massnahmen).forEach(key => {
-                    const option = document.createElement('option');
-                    option.value = key;
-                    option.textContent = massnahmen[key];
-                    select.appendChild(option);
-                });
-                
-            } catch (error) {
-                console.error('Fehler beim Laden der Maßnahmen:', error);
+            });
+            
+            // Dropdown füllen
+            const select = document.getElementById('bauvorhaben');
+            
+            // Alte Optionen entfernen (außer der ersten)
+            while (select.options.length > 1) {
+                select.remove(1);
             }
+            
+            // Neue Optionen hinzufügen
+            Object.keys(massnahmen).forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = massnahmen[key];
+                select.appendChild(option);
+            });
+            
+            console.log('✅ Maßnahmen geladen:', Object.keys(massnahmen));
+            
+        } catch (error) {
+            console.error('Fehler beim Laden der Maßnahmen:', error);
         }
+    }
 
-// Beim Laden der Seite aufrufen
-document.addEventListener('DOMContentLoaded', function() {
+    // Sofort ausführen
     loadMassnahmen();
-});
 
+    // ===== FORMULAR ABSENDEN =====
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
 
@@ -70,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            // API aufrufen
             const response = await fetch(`${API_URL}/foerderungen/check`, {
                 method: 'POST',
                 headers: {
@@ -87,8 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const data = await response.json();
-
-            // Ergebnis anzeigen
             showResult(data, gebaeudetyp, baujahr);
 
         } catch (error) {
@@ -99,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // ===== ERGEBNIS ANZEIGEN =====
     function showResult(data, gebaeudetyp, baujahr) {
         let html = `<ul>`;
 
@@ -117,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function() {
                      </li>`;
         });
 
-        // Hinweis je nach Gebäudetyp
         if (gebaeudetyp === 'mehrfamilienhaus') {
             html += `<li>
                         <span class="label">🏢 Hinweis (Mehrfamilienhaus)</span>
@@ -146,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.scrollTo({ top: ergebnisBox.offsetTop - 100, behavior: 'smooth' });
     }
 
+    // ===== ZURÜCK =====
     zurueckBtn.addEventListener('click', function() {
         ergebnisBox.style.display = 'none';
         form.style.display = 'block';
