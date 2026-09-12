@@ -12,6 +12,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // API-URL (wenn Backend läuft)
     const API_URL = 'https://architekten-api-kj6k.onrender.com';
 
+    // Dropdown dynamisch füllen
+        async function loadMassnahmen() {
+            try {
+                const response = await fetch(`${API_URL}/foerderungen`);
+                const data = await response.json();
+                
+                // Eindeutige Maßnahmen sammeln
+                const massnahmen = {};
+                data.forEach(item => {
+                    if (!massnahmen[item.massnahme]) {
+                        massnahmen[item.massnahme] = item.name;
+                    }
+                });
+                
+                // Dropdown füllen
+                const select = document.getElementById('bauvorhaben');
+                
+                // Alte Optionen entfernen (außer der ersten)
+                while (select.options.length > 1) {
+                    select.remove(1);
+                }
+                
+                // Neue Optionen hinzufügen
+                Object.keys(massnahmen).forEach(key => {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.textContent = massnahmen[key];
+                    select.appendChild(option);
+                });
+                
+            } catch (error) {
+                console.error('Fehler beim Laden der Maßnahmen:', error);
+            }
+        }
+
+// Beim Laden der Seite aufrufen
+document.addEventListener('DOMContentLoaded', function() {
+    loadMassnahmen();
+});
+
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
 
