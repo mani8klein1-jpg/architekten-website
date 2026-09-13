@@ -105,15 +105,24 @@ document.addEventListener('DOMContentLoaded', function() {
             html += `<li>
                         <span class="label">📋 Maßnahme</span>
                         <span class="value">${item.name}</span>
-                     </li>`;
+                    </li>`;
             html += `<li>
                         <span class="label">💰 Förderung</span>
                         <span class="value">${item.zuschuss} <span class="badge">möglich</span></span>
-                     </li>`;
-            html += `<li>
-                        <span class="label">📄 Details</span>
-                        <span class="value">${item.details}</span>
-                     </li>`;
+                    </li>`;
+            
+            // Max. Förderung nur anzeigen, wenn vorhanden
+            if (item.max_foerderung) {
+                html += `<li>
+                            <span class="label">💶 Max. Förderung</span>
+                            <span class="value">${item.max_foerderung.toLocaleString('de-DE')} €</span>
+                        </li>`;
+            }
+    
+        html += `<li>
+                    <span class="label">📄 Details</span>
+                    <span class="value">${item.details}</span>
+                </li>`;
         });
 
         if (gebaeudetyp === 'mehrfamilienhaus') {
