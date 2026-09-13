@@ -90,9 +90,10 @@ document.addEventListener('DOMContentLoaded', function() {
             showResult(data, gebaeudetyp, baujahr);
 
         } catch (error) {
-            ergebnisInhalt.innerHTML = `<p style="color:#d32f2f;">❌ ${error.message}</p>`;
+            ergebnisInhalt.innerHTML = html;
             form.style.display = 'none';
             ergebnisBox.style.display = 'block';
+            document.getElementById('anfrageForm').style.display = 'block';
             window.scrollTo({ top: ergebnisBox.offsetTop - 100, behavior: 'smooth' });
         }
     });
@@ -158,6 +159,39 @@ document.addEventListener('DOMContentLoaded', function() {
         ergebnisBox.style.display = 'none';
         form.style.display = 'block';
         window.scrollTo({ top: form.offsetTop - 100, behavior: 'smooth' });
+    });
+
+        // ===== ANFRAGE SENDEN =====
+    document.getElementById('kontaktForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const data = {
+            name: document.getElementById('anfrageName').value,
+            email: document.getElementById('anfrageEmail').value,
+            telefon: document.getElementById('anfrageTelefon').value || null,
+            massnahme: document.getElementById('bauvorhaben').value,
+            gebaeudetyp: document.getElementById('gebaeudetyp').value,
+            baujahr: parseInt(document.getElementById('baujahr').value) || null,
+            ergebnis: ergebnisInhalt.textContent.substring(0, 500)
+        };
+
+        try {
+            const response = await fetch(`${API_URL}/anfragen`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) throw new Error('Fehler beim Senden');
+
+            // Danke-Box anzeigen
+            document.getElementById('anfrageForm').style.display = 'none';
+            document.getElementById('dankeBox').style.display = 'block';
+            window.scrollTo({ top: document.getElementById('dankeBox').offsetTop - 100, behavior: 'smooth' });
+
+        } catch (error) {
+            alert('Fehler beim Senden der Anfrage: ' + error.message);
+        }
     });
 
 });

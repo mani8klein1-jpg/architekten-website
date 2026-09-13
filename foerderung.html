@@ -80,6 +80,38 @@
                 <button class="btn-secondary" id="zurueckBtn">Zurück zum Formular</button>
             </div>
 
+            <!-- ANFRAGE-FORMULAR -->
+        <div id="anfrageForm" class="anfrage-box" style="display: none;">
+            <h2>Ihre Kontaktdaten</h2>
+            <p class="subtitle">Damit wir Ihnen eine verbindliche Auskunft geben können.</p>
+
+            <form id="kontaktForm">
+                <div class="form-group">
+                    <label for="anfrageName">Name *</label>
+                    <input type="text" id="anfrageName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="anfrageEmail">E-Mail *</label>
+                    <input type="email" id="anfrageEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="anfrageTelefon">Telefon (optional)</label>
+                    <input type="tel" id="anfrageTelefon">
+                </div>
+
+                <button type="submit" class="btn-primary">Anfrage senden</button>
+            </form>
+        </div>
+
+<!-- DANKE-NACHRICHT -->
+<div id="dankeBox" class="anfrage-box" style="display: none;">
+    <h2>Vielen Dank!</h2>
+    <p>Ihre Anfrage wurde gespeichert. Wir melden uns bei Ihnen.</p>
+    <button class="btn-secondary" onclick="location.reload()">Neue Anfrage</button>
+</div>
+
         </div>
 
     </section>
