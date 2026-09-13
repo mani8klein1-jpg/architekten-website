@@ -27,7 +27,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;     /* ← Logo vertikal zentriert */
-    height: 120px;
+    height: 110px;
     /*padding: 0 35px 25px 35px;*/
     padding: 0 35px 5px 20px;
      position: relative;         /* ← für die Navigation */
@@ -41,7 +41,7 @@ body {
 }
 
 .logo img {
-    height: 90px;          /* ← Passe die Höhe an */
+    height: 110px;          /* ← Passe die Höhe an */
     width: auto;
     display: block;
 }
@@ -781,12 +781,12 @@ nav a:hover {
 
     /* === HEADER === */
     .header {
-        height: 80px;
+        height: 90px;
         padding: 0 18px;
     }
 
     .logo img {
-        height: 50px;
+        height: 60px;
     }
 
     /* === HAMBURGER (Hauptnavigation) === */
