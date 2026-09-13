@@ -781,12 +781,12 @@ nav a:hover {
 
     /* === HEADER === */
     .header {
-        height: 90px;
+        height: 100px;
         padding: 0 18px;
     }
 
     .logo img {
-        height: 60px;
+        height: 70px;
     }
 
     /* === HAMBURGER (Hauptnavigation) === */
