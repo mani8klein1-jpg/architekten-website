@@ -4,12 +4,11 @@
 
 const API_URL = 'https://architekten-api-kj6k.onrender.com';
 
-// ===== LOGIN =====
 let authHeader = '';
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Prüfen, ob bereits eingeloggt (Session Storage)
+    // Prüfen, ob bereits eingeloggt
     const savedAuth = sessionStorage.getItem('adminAuth');
     if (savedAuth) {
         authHeader = savedAuth;
@@ -36,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Falscher Benutzername oder Passwort');
             }
 
-            // Login erfolgreich
             sessionStorage.setItem('adminAuth', authHeader);
             document.getElementById('loginError').style.display = 'none';
             showAdminPanel();
@@ -98,11 +96,36 @@ function renderTable(data) {
     const tbody = document.getElementById('foerderungenTable');
     tbody.innerHTML = '';
 
+    // Nach Name sortieren
+    data.sort((a, b) => a.name.localeCompare(b.name));
+
+    // Maßnahmen zählen
+    const massnahmenCount = {};
+    data.forEach(item => {
+        massnahmenCount[item.massnahme] = (massnahmenCount[item.massnahme] || 0) + 1;
+    });
+
+    // Erste Förderung pro Maßnahme finden
+    const ersteFoerderung = {};
+    data.forEach(item => {
+        if (!ersteFoerderung[item.massnahme]) {
+            ersteFoerderung[item.massnahme] = item.id;
+        }
+    });
+
     data.forEach(item => {
         const tr = document.createElement('tr');
+
+        const istErste = ersteFoerderung[item.massnahme] === item.id;
+        const istDoppelt = massnahmenCount[item.massnahme] > 1;
+
+        let markierung = '';
+        if (istDoppelt && !istErste) {
+            markierung = ' <span class="warning-icon" title="Diese Förderung erscheint nicht im Dropdown, weil es bereits eine Förderung mit dieser Maßnahme gibt.">⚠️</span>';
+        }
+
         tr.innerHTML = `
-            <td>${item.id}</td>
-            <td>${item.name}</td>
+            <td>${item.name}${markierung}</td>
             <td>${item.massnahme}</td>
             <td>${item.gebaeudetyp}</td>
             <td>${item.zuschuss}</td>
@@ -115,7 +138,6 @@ function renderTable(data) {
         tbody.appendChild(tr);
     });
 
-    // Förderungen global speichern für Bearbeitung
     window.allFoerderungen = data;
 }
 
@@ -162,6 +184,20 @@ async function saveFoerderung(e) {
         details: document.getElementById('details').value,
         max_foerderung: parseFloat(document.getElementById('max_foerderung').value) || null
     };
+
+    // Prüfen: Gibt es schon eine Förderung mit dieser Maßnahme?
+    const existiert = window.allFoerderungen.find(f => 
+        f.massnahme === data.massnahme && f.id != id
+    );
+
+    if (existiert && !id) {
+        const bestaetigung = confirm(
+            `⚠️ Achtung: Es gibt bereits eine Förderung mit der Maßnahme "${data.massnahme}" (${existiert.name}).\n\n` +
+            `Auf der Website wird nur die erste Förderung pro Maßnahme im Dropdown angezeigt.\n\n` +
+            `Möchten Sie trotzdem speichern?`
+        );
+        if (!bestaetigung) return;
+    }
 
     const url = id ? `${API_URL}/admin/foerderungen/${id}` : `${API_URL}/admin/foerderungen`;
     const method = id ? 'PUT' : 'POST';

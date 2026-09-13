@@ -146,6 +146,23 @@
     background-color: #e0e0e0;
 }
 
+/* INFO-BOX */
+.admin-info {
+    background-color: #f0f7ff;
+    border-left: 4px solid #1a1a1a;
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.admin-info p {
+    margin: 0;
+}
+
 /* Tabelle */
 .table-wrapper {
     background-color: #ffffff;
@@ -209,6 +226,13 @@
     background-color: #e0e0e0;
 }
 
+.warning-icon {
+    color: #f39c12;
+    font-size: 16px;
+    margin-left: 5px;
+    cursor: help;
+}
+
 /* MODAL */
 .modal-overlay {
     position: fixed;
@@ -267,5 +291,10 @@
     .admin-table td {
         padding: 8px 5px;
         font-size: 12px;
+    }
+
+    .admin-info {
+        font-size: 13px;
+        padding: 12px 15px;
     }
 }
