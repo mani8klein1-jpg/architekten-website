@@ -90,10 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
             showResult(data, gebaeudetyp, baujahr);
 
         } catch (error) {
-            ergebnisInhalt.innerHTML = html;
+            ergebnisInhalt.innerHTML = `<p style="color:#d32f2f;">❌ ${error.message}</p>`;
             form.style.display = 'none';
             ergebnisBox.style.display = 'block';
-            document.getElementById('anfrageForm').style.display = 'block';
             window.scrollTo({ top: ergebnisBox.offsetTop - 100, behavior: 'smooth' });
         }
     });
@@ -151,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ergebnisInhalt.innerHTML = html;
         form.style.display = 'none';
         ergebnisBox.style.display = 'block';
+        document.getElementById('anfrageForm').style.display = 'block';
         window.scrollTo({ top: ergebnisBox.offsetTop - 100, behavior: 'smooth' });
     }
 
