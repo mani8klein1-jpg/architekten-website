@@ -96,8 +96,8 @@ function renderTable(data) {
     const tbody = document.getElementById('foerderungenTable');
     tbody.innerHTML = '';
 
-    // Nach Name sortieren
-    data.sort((a, b) => a.name.localeCompare(b.name));
+    // Nach ID sortieren
+    data.sort((a, b) => a.id - b.id);
 
     // Maßnahmen zählen
     const massnahmenCount = {};
@@ -105,13 +105,12 @@ function renderTable(data) {
         massnahmenCount[item.massnahme] = (massnahmenCount[item.massnahme] || 0) + 1;
     });
 
-    // Erste Förderung pro Maßnahme finden
+    // Erste Förderung pro Maßnahme finden (nach ID sortiert)
     const ersteFoerderung = {};
-    const sortedById = [...data].sort((a, b) => a.id - b.id);
-    sortedById.forEach(item => {
-            if (!ersteFoerderung[item.massnahme]) {
-                ersteFoerderung[item.massnahme] = item.id;
-            }
+    data.forEach(item => {
+        if (!ersteFoerderung[item.massnahme]) {
+            ersteFoerderung[item.massnahme] = item.id;
+        }
     });
 
     data.forEach(item => {
