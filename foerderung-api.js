@@ -172,7 +172,8 @@ document.addEventListener('DOMContentLoaded', function() {
             massnahme: document.getElementById('bauvorhaben').value,
             gebaeudetyp: document.getElementById('gebaeudetyp').value,
             baujahr: parseInt(document.getElementById('baujahr').value) || null,
-            ergebnis: ergebnisInhalt.textContent.substring(0, 500)
+            
+            ergebnis: document.getElementById('bauvorhaben').options[document.getElementById('bauvorhaben').selectedIndex].text
         };
 
         try {
