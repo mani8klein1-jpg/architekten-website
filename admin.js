@@ -107,10 +107,11 @@ function renderTable(data) {
 
     // Erste Förderung pro Maßnahme finden
     const ersteFoerderung = {};
-    data.forEach(item => {
-        if (!ersteFoerderung[item.massnahme]) {
-            ersteFoerderung[item.massnahme] = item.id;
-        }
+    const sortedById = [...data].sort((a, b) => a.id - b.id);
+    sortedById.forEach(item => {
+            if (!ersteFoerderung[item.massnahme]) {
+                ersteFoerderung[item.massnahme] = item.id;
+            }
     });
 
     data.forEach(item => {
