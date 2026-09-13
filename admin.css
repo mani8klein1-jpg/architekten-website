@@ -289,25 +289,10 @@
 
 /* Mobile */
 @media (max-width: 768px) {
-    .admin-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
 
-    .admin-table th,
-    .admin-table td {
-        padding: 8px 5px;
-        font-size: 12px;
-    }
-
-    .admin-info {
-        font-size: 13px;
-        padding: 12px 15px;
-    }
-
+    /* === ADMIN-LOGIN (Handy) === */
     .admin-login {
-        padding: 90px 15px 40px 15px;   /* ← 90px = Header (80px) + 10px Abstand */
+        padding: 90px 15px 40px 15px;
         min-height: auto;
     }
 
@@ -324,7 +309,47 @@
         margin-bottom: 20px;
     }
 
+    /* === ADMIN-PANEL (Handy) === */
     .admin-panel {
-        padding: 10px 15px 40px 15px;
+        padding: 90px 15px 40px 15px;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+
+    .admin-header h1 {
+        font-size: 22px;
+    }
+
+    .admin-info {
+        padding: 12px 15px;
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+
+    .btn-primary {
+        padding: 12px 0;
+        font-size: 14px;
+    }
+
+    .table-wrapper {
+        padding: 12px;
+        margin-top: 12px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 8px 5px;
+        font-size: 12px;
+    }
+
+    .admin-table td .btn-edit,
+    .admin-table td .btn-delete {
+        padding: 4px 8px;
+        font-size: 11px;
     }
 }
