@@ -122,15 +122,10 @@
 
                 <div class="form-group">
                     <label for="massnahme">Maßnahme</label>
-                    <select id="massnahme" required>
-                        <option value="">-- Bitte wählen --</option>
-                        <option value="dach">Dach</option>
-                        <option value="heizung">Heizung</option>
-                        <option value="fenster">Fenster</option>
-                        <option value="gebaeudehuelle">Gebäudehülle</option>
-                        <option value="neubau">Neubau</option>
-                        <option value="beratung">Beratung</option>
-                    </select>
+                    <input type="text" id="massnahme" list="massnahmenListe" required placeholder="z.B. fassade">
+                    <datalist id="massnahmenListe">
+                        <!-- Wird per JavaScript gefüllt -->
+                    </datalist>
                 </div>
 
                 <div class="form-group">

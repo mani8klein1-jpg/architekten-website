@@ -92,6 +92,35 @@ async function loadFoerderungen() {
     }
 }
 
+// ===== MASSNAHMEN FÜR DATALIST LADEN =====
+async function loadMassnahmenForAdmin() {
+    try {
+        const response = await fetch(`${API_URL}/foerderungen`);
+        const data = await response.json();
+        
+        // Eindeutige Maßnahmen sammeln
+        const massnahmen = new Set();
+        data.forEach(item => {
+            massnahmen.add(item.massnahme);
+        });
+        
+        // Datalist füllen
+        const datalist = document.getElementById('massnahmenListe');
+        datalist.innerHTML = '';
+        
+        Array.from(massnahmen).sort().forEach(key => {
+            const option = document.createElement('option');
+            option.value = key;
+            datalist.appendChild(option);
+        });
+        
+        console.log('✅ Maßnahmen geladen:', Array.from(massnahmen));
+        
+    } catch (error) {
+        console.error('Fehler beim Laden der Maßnahmen:', error);
+    }
+}
+
 function renderTable(data) {
     const tbody = document.getElementById('foerderungenTable');
     tbody.innerHTML = '';
@@ -145,6 +174,9 @@ function renderTable(data) {
 function openModal(foerderung = null) {
     document.getElementById('modalOverlay').style.display = 'flex';
     
+    // Maßnahmen laden (für Datalist)
+    loadMassnahmenForAdmin();
+
     if (foerderung) {
         document.getElementById('modalTitle').textContent = 'Förderung bearbeiten';
         document.getElementById('foerderungId').value = foerderung.id;
