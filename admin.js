@@ -86,6 +86,7 @@ async function loadFoerderungen() {
 
         const data = await response.json();
         renderTable(data);
+        loadAnfragen(); 
 
     } catch (error) {
         alert('Fehler beim Laden der Förderungen: ' + error.message);
@@ -168,6 +169,37 @@ function renderTable(data) {
     });
 
     window.allFoerderungen = data;
+}
+
+
+function renderAnfragen(data) {
+    const tbody = document.getElementById('anfragenTable');
+    if (!tbody) return;
+    
+    tbody.innerHTML = '';
+
+    if (data.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;color:#888;">Noch keine Anfragen.</td></tr>';
+        return;
+    }
+
+    data.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${item.erstellt_am}</td>
+            <td>${item.name}</td>
+            <td><a href="mailto:${item.email}">${item.email}</a></td>
+            <td>${item.telefon || '-'}</td>
+            <td>${item.massnahme}</td>
+            <td>${item.gebaeudetyp}</td>
+            <td>${item.baujahr || '-'}</td>
+            <td>${item.ergebnis || '-'}</td>
+            <td>
+                <button class="btn-delete" onclick="deleteAnfrage(${item.id})">Löschen</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
 }
 
 // ===== MODAL =====
